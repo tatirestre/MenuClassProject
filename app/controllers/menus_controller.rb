@@ -28,6 +28,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
+        UserMailer.user_new_menu_confirmation(@menu.id).deliver_later
         format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
         format.json { render :show, status: :created, location: @menu }
       else

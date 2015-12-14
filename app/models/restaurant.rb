@@ -1,6 +1,9 @@
 class Restaurant < ActiveRecord::Base
-has_many :items
+
 has_many :users
+has_many :menus
+has_many :items
+
 validates_uniqueness_of :name
  
 #Friendly ID code

@@ -1,37 +1,47 @@
 
 <p>
-  <strong>Name:</strong>
-  <%= @menu.name %>
+  <h1>
+  <%= @menu.restaurant.name %>
+  </h1> 
 </p>
 
 <p>
-  <strong>Start date:</strong>
+  <h2>
+  <%= @menu.name %> - Menu
+  </h2>
+</p>
+
+<p>
+  <strong>Date:</strong>
   <%= @menu.start_date %>
 </p>
 
 <p>
-  <strong>End date:</strong>
-  <%= @menu.end_date %>
+<h3>Our menu for this day is:</h3>
 </p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Photo</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>User:</strong>
-  <%= @menu.user.email %>
-</p>
+  <tbody>
+  <%- @menu.items.each do |item| %>  
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= item.photo %></td>
+        <td><%= item.price %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 
-<p>
-  <strong>Restaurant:</strong>
-  <%= @menu.restaurant.name %>
-</p>
-
-<p>
-<strong>Menu Items:</strong>
-<ul> 
-   <%- @menu.items.each do |item| %>
-       <li><%= item.name %></li>
-   <% end %> 
-</ul>
-</p>
 
 <%= link_to 'Edit', edit_menu_path(@menu), class: "btn btn-default" %> |
 <%= link_to 'Back', menus_path, class: "btn btn-default" %>

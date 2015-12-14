@@ -25,9 +25,9 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = current_user.items.new(item_params)
-
     respond_to do |format|
       if @item.save
+        UserMailer.user_new_item_confirmation.deliver_later
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
